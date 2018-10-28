@@ -7,11 +7,19 @@ use strict;
 
 use Math::Complex;
 
-$num = 5;
+my $time;
 
-sub get_square_root {
-  print sqrt($num);
+sub seconds_to_travel {
+  $time = 2 * ( sqrt($distance / $m_drive));
+  print $time;
 }
 
-print "\n";
+print("Distance in km:  ");
+chomp(my $distance = <STDIN>);
 
+print("M Drive: ");
+chomp(my $m_drive = <STDIN>);
+
+
+&seconds_to_travel;
+print "\n";
