@@ -10,7 +10,7 @@ use Math::Complex;
 my $time;
 
 sub seconds_to_travel {
-  $time = 2 * ( sqrt($distance / $m_drive));
+  my $time = 2 * ( sqrt($distance / $m_drive));
   print $time;
 }
 
