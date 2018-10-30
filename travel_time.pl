@@ -2,39 +2,65 @@
 #
 # travel_time.pl
 #
-# WORK IN PROGRESS!!!!
-# That is, it doesn't work and I need to make progress...
+# Usage:  ./travel_time.pl 100000 2
+#         It will take 1h14m to get there.
+#
+# TODO: 
+# 1. Set up for command line options.
+# 2. Write tests.
 
 use warnings;
 use strict;
 
 use Math::Complex;
 
-my $time = '';
-my $minutes = 0;
+my $distance  = $ARGV[0];
+my $m_drive   = $ARGV[1];
 
-print("Distance in km:  ");
-chomp(my $distance = <STDIN>);
+my @time;
+my $minute    = 60;
+my $hour      = $minute * 60;
+my $day       = $hour * 24; 
 
-print("M Drive: ");
-chomp(my $m_drive = <STDIN>);
-
-
-my $seconds = &seconds_to_travel($distance, $m_drive);
+my $seconds   = &seconds_to_travel($distance, $m_drive);
 &seconds_to_larger;
 
-print "It will take $minutes minutes and $seconds seconds to get there.\n";
+# Only use the two most significant time periods.
+my $t_string  = $time[0] . $time[1];
+
+print "It will take $t_string to get there.\n";
 
 sub seconds_to_travel {
   # Humans use Kilometers but the math uses Meters.
-  $distance *= 1000;
-  int(2 * ( sqrt($distance / $m_drive)));
+  $distance         *= 1000;
+  # M Drive   * 10 is Acceleration in meters per second.
+  my $acceleration  = $m_drive * 10;
+  int(2 * ( sqrt($distance / $acceleration)));
 }
 
 sub seconds_to_larger {
-  if ($seconds > 60) {
-    $minutes = int($seconds / 60);
-    $seconds -= $seconds - ($seconds * $minutes);
+  my $days;
+  my $hours;
+  my $minutes;
+  if ($seconds > $day) {
+    $days         = int($seconds / $day);
+    $seconds      = $seconds - ($day * $days);
+    my $d_string  = $days . "d";
+    push(@time, $d_string);
+  }
+  if ($seconds > $hour) {
+    $hours        = int($seconds / $hour);  
+    $seconds      = $seconds - ($hour * $hours);
+    my $h_string  = $hours . "h";
+    push(@time, $h_string);
+  }
+  if ($seconds > $minute) {
+    $minutes      = int($seconds / $minute);
+    $seconds      = $seconds % $minute;
+    my $m_string  = $minutes . "m";
+    push(@time, $m_string);
+    my $s_string  = $seconds . "s";
+    push(@time, $s_string);
   }
 }
 
