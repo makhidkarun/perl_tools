@@ -36,6 +36,7 @@ sub seconds_to_travel {
 }
 
 sub seconds_to_larger {
+  my @time_list   = ();
   my $minute      = 60;
   my $hour        = $minute * 60;
   my $day         = $hour * 24; 
@@ -44,21 +45,21 @@ sub seconds_to_larger {
     $days         = int($seconds / $day);
     $seconds      = $seconds - ($day * $days);
     my $d_string  = $days . "d";
-    push(@time, $d_string);
+    push(@time_list, $d_string);
   }
   if ($seconds > $hour) {
     $hours        = int($seconds / $hour);  
     $seconds      = $seconds - ($hour * $hours);
     my $h_string  = $hours . "h";
-    push(@time, $h_string);
+    push(@time_list, $h_string);
   }
   if ($seconds > $minute) {
     $minutes      = int($seconds / $minute);
     $seconds      = $seconds % $minute;
     my $m_string  = $minutes . "m";
     my $s_string  = $seconds . "s";
-    push(@time, $m_string, $s_string);
+    push(@time_list, $m_string, $s_string);
   }
-  return @time;
+  return @time_list;
 }
 
