@@ -17,12 +17,12 @@ die "Usage: travel_time.pl <distance (km)> <acceleration (M-Drive)>\n" unless @A
 
 my ($distance, $m_drive) = @ARGV;
 
-
 my $seconds = seconds_to_travel($distance, $m_drive);
-my @time    = seconds_to_larger();
+my @time    = seconds_to_larger($seconds);
 
 # Only use the two most significant time periods.
-my $t_string  = $time[0] . $time[1];
+my @t       = splice(@time,0,2);
+my $t_string = join("", @t);
 
 print "It will take $t_string to get there.\n";
 
@@ -36,29 +36,33 @@ sub seconds_to_travel {
 }
 
 sub seconds_to_larger {
+  my ($seconds)     = @_;
   my @time_list   = ();
   my $minute      = 60;
   my $hour        = $minute * 60;
   my $day         = $hour * 24; 
   my ($days, $hours, $minutes);
-  if ($seconds > $day) {
+  if ($seconds >= $day) {
     $days         = int($seconds / $day);
     $seconds      = $seconds - ($day * $days);
     my $d_string  = $days . "d";
     push(@time_list, $d_string);
   }
-  if ($seconds > $hour) {
+  if ($seconds >= $hour) {
     $hours        = int($seconds / $hour);  
     $seconds      = $seconds - ($hour * $hours);
     my $h_string  = $hours . "h";
     push(@time_list, $h_string);
   }
-  if ($seconds > $minute) {
+  if ($seconds >= $minute) {
     $minutes      = int($seconds / $minute);
     $seconds      = $seconds % $minute;
     my $m_string  = $minutes . "m";
+    push(@time_list, $m_string);
+  }
+  if ($seconds > 0) {
     my $s_string  = $seconds . "s";
-    push(@time_list, $m_string, $s_string);
+    push(@time_list, $s_string);
   }
   return @time_list;
 }
