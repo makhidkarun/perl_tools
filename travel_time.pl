@@ -11,19 +11,19 @@
 
 use warnings;
 use strict;
-
 use Math::Complex;
 
-my $distance  = $ARGV[0];
-my $m_drive   = $ARGV[1];
+die "Usage: travel_time.pl <distance (km)> <acceleration (M-Drive)>\n" unless @ARGV == 2;
+
+my ($distance, $m_drive) = @ARGV;
 
 my @time;
 my $minute    = 60;
 my $hour      = $minute * 60;
 my $day       = $hour * 24; 
 
-my $seconds   = &seconds_to_travel($distance, $m_drive);
-&seconds_to_larger;
+my $seconds   = seconds_to_travel($distance, $m_drive);
+seconds_to_larger();
 
 # Only use the two most significant time periods.
 my $t_string  = $time[0] . $time[1];
@@ -32,6 +32,7 @@ print "It will take $t_string to get there.\n";
 
 sub seconds_to_travel {
   # Humans use Kilometers but the math uses Meters.
+  my ($distance, $m_time) = @_;
   $distance         *= 1000;
   # M Drive   * 10 is Acceleration in meters per second.
   my $acceleration  = $m_drive * 10;
@@ -58,9 +59,8 @@ sub seconds_to_larger {
     $minutes      = int($seconds / $minute);
     $seconds      = $seconds % $minute;
     my $m_string  = $minutes . "m";
-    push(@time, $m_string);
     my $s_string  = $seconds . "s";
-    push(@time, $s_string);
+    push(@time, $m_string, $s_string);
   }
 }
 
