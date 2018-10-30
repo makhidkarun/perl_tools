@@ -17,13 +17,9 @@ die "Usage: travel_time.pl <distance (km)> <acceleration (M-Drive)>\n" unless @A
 
 my ($distance, $m_drive) = @ARGV;
 
-my @time;
-my $minute    = 60;
-my $hour      = $minute * 60;
-my $day       = $hour * 24; 
 
-my $seconds   = seconds_to_travel($distance, $m_drive);
-seconds_to_larger();
+my $seconds = seconds_to_travel($distance, $m_drive);
+my @time    = seconds_to_larger();
 
 # Only use the two most significant time periods.
 my $t_string  = $time[0] . $time[1];
@@ -40,9 +36,10 @@ sub seconds_to_travel {
 }
 
 sub seconds_to_larger {
-  my $days;
-  my $hours;
-  my $minutes;
+  my $minute      = 60;
+  my $hour        = $minute * 60;
+  my $day         = $hour * 24; 
+  my ($days, $hours, $minutes);
   if ($seconds > $day) {
     $days         = int($seconds / $day);
     $seconds      = $seconds - ($day * $days);
@@ -62,5 +59,6 @@ sub seconds_to_larger {
     my $s_string  = $seconds . "s";
     push(@time, $m_string, $s_string);
   }
+  return @time;
 }
 
