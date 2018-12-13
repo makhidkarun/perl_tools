@@ -1,0 +1,16 @@
+bin/chargen.pl
+bin/roll_dice.pl
+bin/travel_time.pl
+Build.PL
+Changes
+data/names.db
+lib/Dice.pm
+MANIFEST			This list of files
+README
+t/00-load.t
+t/Dice.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t
+toys/skills.pl
+xt/boilerplate.t
