@@ -4,13 +4,10 @@
 #
 use strict;
 use warnings;
-#use 5.008_004;  # Leam's personal limitation.  
+use 5.008_004;  # Leam's personal limitation.  
 use Getopt::Long;
-
-sub roll_dice() {
-  my $roll = int(rand(6)) + int(rand(6)) + 2;
-  return $roll;
-}
+use lib 'lib';
+use Dice qw( roll_dice roll_1 roll_2);
 
 my %args;
 my $rolls = 1;
@@ -19,7 +16,7 @@ GetOptions(
   "rolls=i" => \$rolls,
   );
 
-for (my $i = 0; $i < $rolls; $i++) {
-  print roll_dice . " ";
+for (1..$rolls) {
+  print roll_2 . " ";
 }
 print "\n";
