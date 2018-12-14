@@ -24,13 +24,11 @@ our $VERSION = '0.01';
 
 Provides dice rolls for other code. 
 
-  use Dice qw( roll_dice roll_1 roll_2);
-  
+  C<use Dice qw( roll_dice roll_1 roll_2);
   # Shortcut standard roll: 
   my $roll = roll_2;
-
   # If using more than 2 dice, and have a per-total modifier.
-  my $other_roll = roll_dice(5,+3);
+  my $other_roll = roll_dice(5,+3);>
 
 =head1 EXPORT
 
@@ -69,6 +67,8 @@ sub roll_1 {
 sub roll_2 {
   return roll_dice(2,0);
 }
+
+
 
 =head1 AUTHOR
 
@@ -112,9 +112,9 @@ L<https://metacpan.org/release/.>
 
 =back
 
-
 =head1 ACKNOWLEDGEMENTS
 
+Appreciate all the support from Freenode#perl.
 
 =head1 LICENSE AND COPYRIGHT
 
