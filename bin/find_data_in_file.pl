@@ -12,12 +12,15 @@ use strict;
 use warnings;
 use Getopt::Long;
 use 5.008_004;
+use Cwd;
 
 my %args;
+my $my_dir;
 my $dir;
 my $pattern;
 my $exclude_list;
 my @excludes;
+my $my_f;
 
 my @dirs = ();
 my %seen;
@@ -33,17 +36,16 @@ if ( $exclude_list) {
 }
 
 if (! $dir) {
-  $dir = `pwd`;
-  chomp($dir);
+  $dir = cwd;
 } elsif (! -d $dir) {
-  die "$dir is not a directory!";
+  die "$dir is not a directory: $!";
 }
 push @dirs, $dir;
 
 while (my $pwd = shift @dirs) {
-  opendir(DIR, "$pwd") or die "Cannot open $pwd.\n";
-  my @files = readdir(DIR);
-  closedir(DIR);
+  opendir($my_dir, "$pwd") or die "Cannot open $pwd: $!.\n";
+  my @files = readdir($my_dir);
+  closedir($my_dir);
   foreach my $file (@files) {
     next if $file =~ /^\.\.?$/;
     my $path = "$pwd/$file";
@@ -53,8 +55,8 @@ while (my $pwd = shift @dirs) {
       push @dirs, $path;
     } 
     if (-T $path) {
-      open MY_F, "$path";
-      while (defined (my $line = <MY_F>)) {
+      open $my_f, "$path";
+      while (defined (my $line = <$my_f>)) {
         if ( $line =~ /$pattern/ ) {
           my $print_it = 1;
           chomp $line;
@@ -68,6 +70,7 @@ while (my $pwd = shift @dirs) {
           print("$path : $line\n") if ( $print_it ); 
         }
       }
+      close $my_f;
     }
   }
 }
