@@ -11,8 +11,8 @@
 /output/
 /data/new_characters.json
 /doc/
-**/blib/
-**/_build/
+/blib/
+/_build/
 
 
 ## Specific to RubyMotion:
