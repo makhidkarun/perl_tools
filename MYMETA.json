@@ -29,6 +29,10 @@
       "Dice" : {
          "file" : "lib/Dice.pm",
          "version" : "0.01"
+      },
+      "Names" : {
+         "file" : "lib/Names.pm",
+         "version" : "0.01"
       }
    },
    "release_status" : "stable",

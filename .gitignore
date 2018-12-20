@@ -11,6 +11,9 @@
 /output/
 /data/new_characters.json
 /doc/
+**/blib/
+**/_build/
+
 
 ## Specific to RubyMotion:
 .dat*

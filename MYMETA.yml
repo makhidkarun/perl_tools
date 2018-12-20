@@ -17,6 +17,9 @@ provides:
   Dice:
     file: lib/Dice.pm
     version: '0.01'
+  Names:
+    file: lib/Names.pm
+    version: '0.01'
 resources:
   license: http://www.opensource.org/licenses/mit-license.php
 version: '0.01'
