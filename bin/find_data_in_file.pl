@@ -3,9 +3,10 @@
 # find_data_in_file.pl
 #
 # Usage:
-#   find_data_in_file.pl -d "my_dir" -p "some pattern"
+#   find_data_in_file.pl -d "my_dir" -p "some pattern" [-e "comma,sep,list"]
 #    or --dir
 #       --pattern
+#       --excludes
 
 use strict;
 use warnings;
@@ -15,13 +16,21 @@ use 5.008_004;
 my %args;
 my $dir;
 my $pattern;
+my $exclude_list;
+my @excludes;
+
 my @dirs = ();
 my %seen;
 
 GetOptions(
-  "dir=s"     => \$dir,
-  "pattern=s" => \$pattern,
+  "dir=s"           => \$dir,
+  "pattern=s"       => \$pattern,
+  "exclude_list=s"  => \$exclude_list,
 );
+
+if ( $exclude_list) {
+  @excludes = split /,/, $exclude_list;
+}
 
 if (! $dir) {
   $dir = `pwd`;
@@ -47,8 +56,16 @@ while (my $pwd = shift @dirs) {
       open MY_F, "$path";
       while (defined (my $line = <MY_F>)) {
         if ( $line =~ /$pattern/ ) {
+          my $print_it = 1;
           chomp $line;
-          print("$path : $line\n");
+          if (@excludes) {
+            foreach my $my_ex (@excludes) {
+              if ( index( $line, $my_ex ) > -1) {
+                $print_it = 0
+              }
+            }
+          }
+          print("$path : $line\n") if ( $print_it ); 
         }
       }
     }
