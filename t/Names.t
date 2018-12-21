@@ -18,16 +18,13 @@ my %name;
 my %name_l;
 my %name_data;
 
-eval {
-  %name = gen_name;
-  %name_data = ( 'last' => 'Flintstone' );
-  %name_l = gen_name( %name_data );
-};
+%name = gen_name;
+%name_data = ( 'last' => 'Flintstone' );
+%name_l = gen_name( %name_data );
 
 # General test, does it give a two phrase string?
 ok( length($name{'first'}) > 2, "Name{first} is $name{'first'}");
 ok( length($name{'last'}) > 2, "Name{last} is $name{'last'}");
-#ok( $name_l{'last'} eq 'Flintstone', "name_l{'last'} is $name_l{'last'}");
-ok( $name_l{'last'} eq 'Flintstone' );
+ok( $name_l{'last'} eq 'Flintstone', "name_l{'last'} is $name_l{'last'}");
  
 done_testing();
