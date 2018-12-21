@@ -27,6 +27,7 @@ eval {
 # General test, does it give a two phrase string?
 ok( length($name{'first'}) > 2, "Name{first} is $name{'first'}");
 ok( length($name{'last'}) > 2, "Name{last} is $name{'last'}");
-ok( $name_l{'last'} eq 'Flintstone', "name_l{'last'} is $name_l{'last'}");
+#ok( $name_l{'last'} eq 'Flintstone', "name_l{'last'} is $name_l{'last'}");
+ok( $name_l{'last'} eq 'Flintstone' );
  
 done_testing();
