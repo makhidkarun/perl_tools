@@ -8,6 +8,7 @@ perl:
 before_install:
   - cpanm DBI
   - cpanm Exporter
+  - cpanm lib
 
 install:
   cpanm --quiet --installdeps --notest .
