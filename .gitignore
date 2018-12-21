@@ -13,7 +13,7 @@
 /doc/
 /blib/
 /_build/
-
+Build
 
 ## Specific to RubyMotion:
 .dat*
