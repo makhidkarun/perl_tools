@@ -33,11 +33,10 @@ my @upp             = gen_upp();
 my $upp_s           = upp_to_s(@upp);
 my %data;
 $data{'gender'}     = int(rand(2)) ? "F" : "M";
-my %name            = gen_name(%data);
+my $name            = gen_name(%data);
 
-printf("%s %s [%s] %s\n", 
-  $name{'first'}, 
-  $name{'last'}, 
+printf("%s [%s] %s\n", 
+  $name, 
   $data{'gender'}, 
   $upp_s);
 

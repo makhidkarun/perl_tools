@@ -14,18 +14,16 @@ BEGIN {
 
 diag( "Testing Names $Names::VERSION, Perl $], $^X" );
 
-my %name;
-my %name_l;
-my %name_data;
 my %data;
 $data{'gender'} = int(rand(2)) ? "F" : "M";
-%name           = gen_name(%data);
+my $name           = gen_name(%data);
+
 $data{'last'}   = 'Flintstone' ;
-%name_l         = gen_name( %data );
+my $name_l         = gen_name( %data );
 
 # General test, does it give a two phrase string?
-ok( length($name{'first'}) > 2, "Name{first} is $name{'first'}");
-ok( length($name{'last'}) > 2, "Name{last} is $name{'last'}");
-ok( $name_l{'last'} eq 'Flintstone', "name_l{'last'} is $name_l{'last'}");
+ok( length($name) > 5, "Name too short: $name");
+ok( ( split / /, $name) ==  2, "Name isn't two words: $name");
+ok( $name_l =~ /Flintstone/, "Name doesn't match: $name_l");
  
 done_testing();
