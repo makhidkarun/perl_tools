@@ -46,16 +46,15 @@ my %data;
 =cut
 
 sub new {
-  # <Somni> sub new { my($class, %args) = @_; my $self = {}; 
-  # $self->{'upp'} ...; return bless($self, $class); }
-  my($class, %args) = @_;
-  my %self = {};
-  unless ( $args{'gender'} ) {
-    $self{'gender'} = gen_gender();
+  my $self = shift;
+  %data = @_;
+  unless ( $data{'gender'} ) {
+    $data{'gender'} = gen_gender();
   }
-  $self{'upp'}      = gen_upp();
-  $self{'name'}     = gen_name(%self);
-  return bless($self, $class);
+  $data{'upp'}      = gen_upp();
+  $data{'name'}     = gen_name(%data);
+  my $person;
+  bless \$person, $self;
 }
 
 
