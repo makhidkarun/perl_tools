@@ -17,10 +17,11 @@ diag( "Testing Names $Names::VERSION, Perl $], $^X" );
 my %name;
 my %name_l;
 my %name_data;
-
-%name = gen_name;
-%name_data = ( 'last' => 'Flintstone' );
-%name_l = gen_name( %name_data );
+my %data;
+$data{'gender'} = int(rand(2)) ? "F" : "M";
+%name = gen_name(%data);
+$data{'last'}   = 'Flintstone' ;
+%name_l = gen_name( %data );
 
 # General test, does it give a two phrase string?
 ok( length($name{'first'}) > 2, "Name{first} is $name{'first'}");

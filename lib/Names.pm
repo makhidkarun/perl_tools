@@ -40,7 +40,8 @@ Perhaps a little code snippet.
 =cut
 
 sub gen_name {
-  my %name = @_;
+  my %name_data = @_;
+  my %name;
   my $driver    = "SQLite";
   my $database  = "data/names.db";
   my $dsn       = "DBI:$driver:dbname=$database";
@@ -49,11 +50,9 @@ sub gen_name {
   my $dbh       = DBI->connect($dsn, $userid, $password, { RaiseError => 1 }) or die $DBI::errstr;
   my $stmt_first = '';
 
-  unless ( $name{'gender'} ) {
-    $name{'gender'} = int(rand(2)) ? "F" : "M";
-  }
+  my $gender = $name_data{'gender'};
 
-  if ($name{'gender'} eq 'M' ) {
+  if ($gender eq 'M' ) {
     $stmt_first  = qq(SELECT * from humaniti_male_first ORDER BY RANDOM() LIMIT 1;);
   } else {
     $stmt_first  = qq(SELECT * from humaniti_female_first ORDER BY RANDOM() LIMIT 1;);
@@ -66,7 +65,7 @@ sub gen_name {
   $name{'first'} = $row_f[0];
   }
 
-  unless ( $name{'last'} ) {
+  unless ( $name_data{'last'} ) {
     my $stmt_last     = qq(SELECT * from humaniti_last ORDER BY RANDOM() LIMIT 1; );
     my $sth_l     = $dbh->prepare( $stmt_last );
     my $rv_l      = $sth_l->execute() or die $DBI::errstr;
@@ -76,18 +75,14 @@ sub gen_name {
     while(my @row_l = $sth_l->fetchrow_array()) {
     $name{'last'} = $row_l[0];
     }
+  } else {
+    $name{'last'} = $name_data{'last'};
   }
   
   $dbh->disconnect();
   return %name; 
 }
 
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 

@@ -29,9 +29,15 @@ sub gen_upp {
 }
 
 ####
-my @upp   = gen_upp();
-my $upp_s = upp_to_s(@upp);
-my %name  = gen_name();
+my @upp             = gen_upp();
+my $upp_s           = upp_to_s(@upp);
+my %data;
+$data{'gender'}     = int(rand(2)) ? "F" : "M";
+my %name            = gen_name(%data);
 
-printf("%s %s [%s] %s\n", $name{'first'}, $name{'last'}, $name{'gender'}, $upp_s);
+printf("%s %s [%s] %s\n", 
+  $name{'first'}, 
+  $name{'last'}, 
+  $data{'gender'}, 
+  $upp_s);
 
