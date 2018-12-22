@@ -46,7 +46,7 @@ sub new {
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
-  $data{'upp'}      = gen_upp();
+  $data{'upp'}      = [ gen_upp() ];
   $data{'name'}     = gen_name(%data);
   bless \%data, $self;
 }
@@ -92,11 +92,11 @@ sub upp_s {
 =cut
 
 sub show_s4 {
-  my %d = @_;
+  my $self = shift;
   printf("%s [%s] %s\n", 
-    $d{'name'}, 
-    $d{'gender'}, 
-    upp_s($d{'$upp'}));
+    $self->{'name'}, 
+    $self->{'gender'}, 
+    upp_s($self->{'upp'}));
 };
 
 
