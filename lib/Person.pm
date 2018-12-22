@@ -42,7 +42,6 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 
 sub new {
-  #my $class = shift;
   my ($self, %data) = @_;
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
