@@ -9,7 +9,7 @@ use 5.008_004;
 use DBI;
 use lib 'lib';
 use Names qw( gen_name );
-use Person qw( new show_s4);
+use Person; # qw( new show_s4);
 sub upp_to_s {
   my @my_upp = @_;
   my $str = join '', map {sprintf '%X', $_} @my_upp;
