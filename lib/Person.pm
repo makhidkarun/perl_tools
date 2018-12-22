@@ -42,14 +42,14 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 
 sub new {
-  my $class = shift;
-  my %data = @_;
+  #my $class = shift;
+  my ($self, %data) = @_;
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
   $data{'upp'}      = gen_upp();
   $data{'name'}     = gen_name(%data);
-  bless \%data, $class;
+  bless \%data, $self;
 }
 
 
@@ -93,11 +93,11 @@ sub upp_s {
 =cut
 
 sub show_s4 {
-  my %data = @_;
+  my %d = @_;
   printf("%s [%s] %s\n", 
-    $data{'name'}, 
-    $data{'gender'}, 
-    upp_s($data{'$upp'}));
+    $d{'name'}, 
+    $d{'gender'}, 
+    upp_s($d{'$upp'}));
 };
 
 

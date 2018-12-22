@@ -80,7 +80,6 @@ sub gen_name {
   }
   
   $dbh->disconnect();
-  #return %name; 
   return "$name{'first'} $name{'last'}";
 }
 

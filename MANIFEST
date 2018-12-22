@@ -1,4 +1,5 @@
 bin/chargen.pl
+bin/find_data_in_file.pl
 bin/roll_dice.pl
 bin/travel_time.pl
 Build.PL
@@ -6,6 +7,7 @@ Changes
 data/names.db
 lib/Dice.pm
 lib/Names.pm
+lib/Person.pm
 LICENSE
 MANIFEST			This list of files
 README
@@ -15,5 +17,7 @@ t/manifest.t
 t/Names.t
 t/pod-coverage.t
 t/pod.t
+tmp/fred
+toys/Person.pm
 toys/skills.pl
 xt/boilerplate.t
