@@ -37,24 +37,19 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
-=cut
-
-my %data;
-
 =head2 new
 
 =cut
 
 sub new {
-  my $self = shift;
-  %data = @_;
+  #my $class = shift;
+  my ($self, %data) = @_;
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
   $data{'upp'}      = gen_upp();
   $data{'name'}     = gen_name(%data);
-  my $person;
-  bless \$person, $self;
+  bless \%data, $self;
 }
 
 
@@ -77,7 +72,7 @@ sub gen_upp {
   my @upp;
   while ($counter < 6){
     $roll = int(rand(6)) + int(rand(6)) + 2; 
-    push @upp, $roll;
+    push(@upp, $roll);
     $counter++;
   }
   return @upp;
@@ -98,10 +93,11 @@ sub upp_s {
 =cut
 
 sub show_s4 {
+  my %d = @_;
   printf("%s [%s] %s\n", 
-    $data{'name'}, 
-    $data{'gender'}, 
-    upp_s($data{'upp'}));
+    $d{'name'}, 
+    $d{'gender'}, 
+    upp_s($d{'$upp'}));
 };
 
 
