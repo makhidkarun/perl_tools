@@ -46,7 +46,8 @@ sub new {
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
-  $data{'upp'}      = [ gen_upp() ];
+  my @upp           = gen_upp();
+  $data{'upp'}      = \@upp;
   $data{'name'}     = gen_name(%data);
   bless \%data, $self;
 }
@@ -82,8 +83,8 @@ sub gen_upp {
 =cut
 
 sub upp_s {
-  my @my_upp = @_;
-  my $str = join '', map {sprintf '%X', $_} @my_upp;
+  my @upp = @{$_[0]};
+  my $str = join '', map {sprintf '%X', $_} @upp;
   return $str;
 }
 
