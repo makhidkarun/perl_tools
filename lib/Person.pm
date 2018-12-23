@@ -43,6 +43,10 @@ if you don't export anything, such as for a purely object-oriented module.
 
 sub new {
   my ($self, %data) = @_;
+  #my $self = shift @_;
+  #print "in new, self is $self.\n";
+  #my %data = @{$_[0]};
+  #print "in new, data is %data\n";
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
