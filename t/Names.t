@@ -16,7 +16,7 @@ diag( "Testing Names $Names::VERSION, Perl $], $^X" );
 
 my %data;
 $data{'gender'} = int(rand(2)) ? "F" : "M";
-my $name           = gen_name(%data);
+my $name           = gen_name( %data );
 
 $data{'last'}   = 'Flintstone' ;
 my $name_l         = gen_name( %data );

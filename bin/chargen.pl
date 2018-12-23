@@ -13,6 +13,3 @@ use Person;
 my $fred = Person->new;
 $fred->show_s4;
 
-#my %family_data = {'last' => 'Domici'};
-#my $mrs = Person->new( \%family_data );
-#$mrs->show_s4;
