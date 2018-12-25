@@ -53,6 +53,19 @@ sub required_engineers {
   return $engineers;
 }
 
+=head2 required_gunners
+
+=cut
+
+sub required_gunners {
+  my $self          = shift;
+  my $gunners       = 0;
+  my @weapons       = split /,/, $self->weapons();
+  my $lwc           = scalar @weapons;
+  print "\nweapon_count is $lwc\n";
+  return $lwc;
+}
+
 =head2 new
 
 =cut
