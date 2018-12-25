@@ -98,7 +98,7 @@ sub upp_s {
 
 sub show_s4 {
   my $self = shift;
-  printf("%s [%s] %s\n", 
+  printf("%s [%s] %s", 
     $self->{'name'}, 
     $self->{'gender'}, 
     upp_s($self->{'upp'}));
