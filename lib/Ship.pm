@@ -62,8 +62,17 @@ sub required_gunners {
   my $gunners       = 0;
   my @weapons       = split /,/, $self->weapons();
   my $lwc           = scalar @weapons;
-  print "\nweapon_count is $lwc\n";
   return $lwc;
+}
+
+=head2 need_medic
+
+=cut
+
+sub need_medic {
+  my $self          = shift;
+  my $medic = $self->hull_size >= 200 ? 1 : 0;
+  return $medic;
 }
 
 =head2 new
