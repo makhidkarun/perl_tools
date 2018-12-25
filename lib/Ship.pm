@@ -44,8 +44,9 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 
 sub required_engineers {
-  my $drive_tonnage = shift;
+  my $self          = shift;
   my $engineers     = 1;
+  my $drive_tonnage = $self->drive_ton();
   for (; $drive_tonnage > 35; $drive_tonnage -= 35){
     $engineers++;  
   }
@@ -71,13 +72,52 @@ sub new {
   }, $class;
 }
 
+=head2 name
+
+=cut
+
 sub name      { my $self = shift; return $self->{_name}}
+
+=head2 hull_size
+
+=cut
+
 sub hull_size { my $self = shift; return $self->{_hull_size} }
+
+=head2 jump
+
+=cut
+
 sub jump      { my $self = shift; return $self->{_jump} }
+
+=head2 maneuver
+
+=cut
+
 sub maneuver  { my $self = shift; return $self->{_maneuver}}
+
+=head2 max_cargo
+
+=cut
+
 sub max_cargo { my $self = shift; return $self->{_max_cargo}}
+
+=head2 max_pass
+
+=cut
+
 sub max_pass  { my $self = shift; return $self->{_max_pass}}
+
+=head2 drive_ton
+
+=cut
+
 sub drive_ton { my $self = shift; return $self->{_drive_ton}}
+
+=head2 weapons
+
+=cut
+
 sub weapons   { my $self = shift; return $self->{_weapons}}
 
 
