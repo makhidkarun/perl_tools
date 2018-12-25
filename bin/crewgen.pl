@@ -11,7 +11,7 @@ use warnings;
 use lib 'lib';
 use Getopt::Long;
 
-use Crew;
+use Crew qw( crew_show );
 use Ship;
 use Person;
 
@@ -43,47 +43,30 @@ my %crew;
 print "$s_name\n";
 print '=' x length($s_name) . "\n";
 
-#$crew{'pilot'} = Person->new();
-#printf("\n %-15s", "Pilot");
-#$crew{'pilot'}->show_s4();
+crew_show(\%crew, 'pilot', 1, 'Pilot');
 
-Crew::crew_show(\%crew, 'pilot', 1, 'Pilot');
-
-$crew{'navigator'} = Person->new();
-printf("\n %-15s", "Navigator");
-$crew{'navigator'}->show_s4();
+crew_show(\%crew, 'navigator', 1, 'Navigator');
 
 my $min_engineers  = $ship->min_engineers();
 for my $x (1..$min_engineers) {
-  my $eng_number = "eng_" . $x;
-  $crew{$eng_number} = Person->new();
-  printf("\n %-15s", "Engineer");
-  $crew{$eng_number}->show_s4();
+  crew_show(\%crew, 'eng', $x, 'Engineer');
 }
 
 if ( $ship->need_medic() ) {
-  $crew{'medic'}  = Person->new();
-  printf("\n %-15s", "Medic");
-  $crew{'medic'}->show_s4();
+  crew_show(\%crew, 'medic', 1, 'Medic');
 }
 
 my $min_gunners    = $ship->min_gunners();
 if ( $min_gunners ) {
   for my $x (1..$min_gunners) {
-    my $gunner_number = "gunn_" . $x;
-    $crew{$gunner_number} = Person->new();
-    printf("\n %-15s", "Gunner");
-    $crew{$gunner_number}->show_s4();
+    crew_show(\%crew, 'gunner', $x, 'Gunner');
   }
 }
 
 my $min_stewards  = $ship->min_stewards();
 if ( $min_stewards ) {
   for my $x (1..$min_stewards) {
-    my $steward_number = "stew_" . $x;
-    $crew{$steward_number}  = Person->new();
-    printf("\n %-15s", "Steward");
-    $crew{$steward_number}->show_s4();
+    crew_show(\%crew, 'steward', $x, 'Steward');
   }
 }
   
