@@ -15,8 +15,8 @@ diag( "Testing Ship $Ship::VERSION, Perl $], $^X" );
 
 my @ship_data = split /:/, "Miss Rosa:400:2:3:200:4:50:Trip_Beam, Trip_Pulse, Trip_Pulse,     Trip_Miss";
 my $ship          = Ship->new(\@ship_data);
-
-ok($ship->required_engineers() == 2, "Should be 2, wrong number for 50 ton drive.");
+my $min_eng       = $ship->min_engineers();
+ok($ship->min_engineers() == 2, "Should have 2 engineers for 50 ton drive, show $min_eng.");
 
 done_testing();
 

@@ -14,8 +14,6 @@ my $s_name        = $ship->name();
 my $s_hull_size   = $ship->hull_size();
 my $s_max_cargo   = $ship->max_cargo();
 my $s_weapons     = $ship->weapons();
-my $required_engineers  = $ship->required_engineers();
-my $required_gunners    = $ship->required_gunners();
 
 my %crew;
 print "$s_name\n";
@@ -29,7 +27,8 @@ $crew{'navigator'} = Person->new();
 printf("\n %-15s", "Navigator");
 $crew{'navigator'}->show_s4();
 
-for my $x (1..$required_engineers) {
+my $min_engineers  = $ship->min_engineers();
+for my $x (1..$min_engineers) {
   my $eng_number = "eng_" . $x;
   $crew{$eng_number} = Person->new();
   printf("\n %-15s", "Engineer");
@@ -42,15 +41,24 @@ if ( $ship->need_medic() ) {
   $crew{'medic'}->show_s4();
 }
 
-for my $x (1..$required_gunners) {
-  my $gunner_number = "gunn_" . $x;
-  $crew{$gunner_number} = Person->new();
-  printf("\n %-15s", "Gunner");
-  $crew{$gunner_number}->show_s4();
+my $min_gunners    = $ship->min_gunners();
+if ( $min_gunners ) {
+  for my $x (1..$min_gunners) {
+    my $gunner_number = "gunn_" . $x;
+    $crew{$gunner_number} = Person->new();
+    printf("\n %-15s", "Gunner");
+    $crew{$gunner_number}->show_s4();
+  }
 }
+
+my $min_stewards  = $ship->min_stewards();
+if ( $min_stewards ) {
+  for my $x (1..$min_stewards) {
+    my $steward_number = "stew_" . $x;
+    $crew{$steward_number}  = Person->new();
+    printf("\n %-15s", "Steward");
+    $crew{$steward_number}->show_s4();
+  }
+}
+  
 print "\n";
-
-
-
-
-

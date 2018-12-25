@@ -39,25 +39,41 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 required_engineers
+=head2 min_engineers
 
 =cut
 
-sub required_engineers {
+sub min_engineers {
   my $self          = shift;
-  my $engineers     = 1;
+  my $engineers     = 0;
   my $drive_tonnage = $self->drive_ton();
-  for (; $drive_tonnage > 35; $drive_tonnage -= 35){
+  for (; $drive_tonnage > 0; $drive_tonnage -= 35){
     $engineers++;  
   }
   return $engineers;
 }
 
-=head2 required_gunners
+=head2 min_stewards
 
 =cut
 
-sub required_gunners {
+sub min_stewards {
+  my $self      = shift;
+  my $stewards  = 0;
+  if ( $self->max_pass() > 0 ) {
+    my $pass      = $self->max_pass();
+    for (; $pass > 0; $pass -= 8) {
+      $stewards++;
+    }
+    return $stewards;
+  }    
+}
+ 
+=head2 min_gunners
+
+=cut
+
+sub min_gunners {
   my $self          = shift;
   my $gunners       = 0;
   my @weapons       = split /,/, $self->weapons();
@@ -75,6 +91,11 @@ sub need_medic {
   return $medic;
 }
 
+=head2 need_gunners
+
+=cut
+
+  
 =head2 new
 
 =cut
