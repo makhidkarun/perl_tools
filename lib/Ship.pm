@@ -57,16 +57,17 @@ sub required_engineers {
 =cut
 
 sub new {
-  my $class     =  $_[0];
+  my $class     =  shift;
+  my @data      =  @{$_[0]};
   bless{
-    _name       => $_[1],
-    _hull_size  => $_[2],
-    _jump       => $_[3],
-    _maneuver   => $_[4],
-    _max_cargo  => $_[5],
-    _max_pass   => $_[6],
-    _drive_ton  => $_[7],
-    _weapons    => $_[8],
+    _name       => $data[0],
+    _hull_size  => $data[1],
+    _jump       => $data[3],
+    _maneuver   => $data[4],
+    _max_cargo  => $data[5],
+    _max_pass   => $data[6],
+    _drive_ton  => $data[7],
+    _weapons    => $data[8],
   }, $class;
 }
 
