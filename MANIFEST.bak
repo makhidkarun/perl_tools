@@ -18,5 +18,6 @@ t/Names.t
 t/pod-coverage.t
 t/pod.t
 tmp/fred
+toys/Person.pm
 toys/skills.pl
 xt/boilerplate.t

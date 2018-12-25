@@ -8,6 +8,7 @@ data/names.db
 lib/Dice.pm
 lib/Names.pm
 lib/Person.pm
+lib/Ship.pm
 LICENSE
 MANIFEST			This list of files
 README
@@ -15,6 +16,7 @@ t/00-load.t
 t/Dice.t
 t/manifest.t
 t/Names.t
+t/Person.t
 t/pod-coverage.t
 t/pod.t
 tmp/fred
