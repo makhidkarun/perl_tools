@@ -11,6 +11,7 @@ use warnings;
 use lib 'lib';
 use Getopt::Long;
 
+use Crew;
 use Ship;
 use Person;
 
@@ -27,7 +28,6 @@ open my $CONFIG, '<', "$config" or die $!;
 while (<$CONFIG>) {
   next if ( $_ =~ m/\#/);
   chomp;
-  print "$_.\n";
   if ( $_ =~ /$name/ ) {
     @ship_data = split /:/, $_;
   }
@@ -43,9 +43,11 @@ my %crew;
 print "$s_name\n";
 print '=' x length($s_name) . "\n";
 
-$crew{'pilot'} = Person->new();
-printf("\n %-15s", "Pilot");
-$crew{'pilot'}->show_s4();
+#$crew{'pilot'} = Person->new();
+#printf("\n %-15s", "Pilot");
+#$crew{'pilot'}->show_s4();
+
+Crew::crew_show(\%crew, 'pilot', 1, 'Pilot');
 
 $crew{'navigator'} = Person->new();
 printf("\n %-15s", "Navigator");

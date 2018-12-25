@@ -1,13 +1,17 @@
 bin/chargen.pl
+bin/crewgen.pl
 bin/find_data_in_file.pl
 bin/roll_dice.pl
 bin/travel_time.pl
 Build.PL
 Changes
 data/names.db
+data/ships.csv
+lib/Crew.pm
 lib/Dice.pm
 lib/Names.pm
 lib/Person.pm
+lib/Ship.pm
 LICENSE
 MANIFEST			This list of files
 README
@@ -15,8 +19,10 @@ t/00-load.t
 t/Dice.t
 t/manifest.t
 t/Names.t
+t/Person.t
 t/pod-coverage.t
 t/pod.t
+t/Ship.t
 tmp/fred
 toys/Person.pm
 toys/skills.pl

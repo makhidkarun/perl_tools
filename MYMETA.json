@@ -26,6 +26,10 @@
       }
    },
    "provides" : {
+      "Crew" : {
+         "file" : "lib/Crew.pm",
+         "version" : "0.01"
+      },
       "Dice" : {
          "file" : "lib/Dice.pm",
          "version" : "0.01"
