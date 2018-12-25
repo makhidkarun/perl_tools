@@ -62,23 +62,23 @@ sub new {
   bless{
     _name       => $data[0],
     _hull_size  => $data[1],
-    _jump       => $data[3],
-    _maneuver   => $data[4],
-    _max_cargo  => $data[5],
-    _max_pass   => $data[6],
-    _drive_ton  => $data[7],
-    _weapons    => $data[8],
+    _jump       => $data[2],
+    _maneuver   => $data[3],
+    _max_cargo  => $data[4],
+    _max_pass   => $data[5],
+    _drive_ton  => $data[6],
+    _weapons    => $data[7],
   }, $class;
 }
 
-sub name{       $_[0]->{_name}}
-sub hull_size{  $_[1]->{_hull_size}} 
-sub jump{       $_[2]->{_jump}}
-sub maneuver{   $_[3]->{_maneuver}}
-sub max_cargo{  $_[4]->{_cargo}}
-sub max_pass{   $_[5]->{_max_pass}}
-sub drive_ton{  $_[6]->{_drive_ton}}
-sub weapons{    $_[7]->{_weapons}}
+sub name      { my $self = shift; return $self->{_name}}
+sub hull_size { my $self = shift; return $self->{_hull_size} }
+sub jump      { my $self = shift; return $self->{_jump} }
+sub maneuver  { my $self = shift; return $self->{_maneuver}}
+sub max_cargo { my $self = shift; return $self->{_max_cargo}}
+sub max_pass  { my $self = shift; return $self->{_max_pass}}
+sub drive_ton { my $self = shift; return $self->{_drive_ton}}
+sub weapons   { my $self = shift; return $self->{_weapons}}
 
 
 
