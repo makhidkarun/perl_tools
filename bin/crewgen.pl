@@ -2,13 +2,37 @@
 #
 # crewgen.pl
 #
+# Usage:
+#   bin/crewgen.pl --config=data/ships.csv --name=Rosa
+#
+
 use strict;
 use warnings;
 use lib 'lib';
+use Getopt::Long;
+
 use Ship;
 use Person;
-my @ship_data = split /:/, "Miss Rosa:400:2:3:200:4:50:Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss";
- 
+
+my $config;
+my $name;
+my @ship_data;
+
+GetOptions(
+  "config=s"    => \$config,
+  "name=s"      => \$name,
+);
+
+open my $CONFIG, '<', "$config" or die $!;
+while (<$CONFIG>) {
+  next if ( $_ =~ m/\#/);
+  chomp;
+  print "$_.\n";
+  if ( $_ =~ /$name/ ) {
+    @ship_data = split /:/, $_;
+  }
+}
+
 my $ship          = Ship->new(\@ship_data);
 my $s_name        = $ship->name();
 my $s_hull_size   = $ship->hull_size();
