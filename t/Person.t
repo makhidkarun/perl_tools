@@ -14,4 +14,12 @@ BEGIN {
 
 diag( "Testing Person $Person::VERSION, Perl $], $^X" );
 
+my %data;
+
+$data{'last'} = 'Lefron';
+my $test_last_name = Person->new(%data);
+my %tln_h = $test_last_name->person_hash;
+ok( $tln_h{'name'} =~ /Lefron/, "Failed Last Name.");
+ 
+
 done_testing();

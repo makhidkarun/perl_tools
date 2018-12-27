@@ -10,7 +10,6 @@ use DBI;
 use lib 'lib';
 use Person;
 
-my $fred = Person->new;
-$fred->show_s4;
-print "\n";
-
+my $person = Person->new;
+my %p = $person->person_hash;
+printf("%s [%s] %s\n", $p{'name'}, $p{'gender'}, $p{'upp_s'});

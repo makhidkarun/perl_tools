@@ -42,11 +42,8 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 
 sub new {
-  my ($self, %data) = @_;
-  #my $self = shift @_;
-  #print "in new, self is $self.\n";
-  #my %data = @{$_[0]};
-  #print "in new, data is %data\n";
+  my $self          = shift;
+  my %data          = @_;
   unless ( $data{'gender'} ) {
     $data{'gender'} = gen_gender();
   }
@@ -104,7 +101,19 @@ sub show_s4 {
     upp_s($self->{'upp'}));
 };
 
+=head2 person_hash
 
+=cut
+
+sub person_hash {
+  my $self    = shift;
+  my %p       = (
+    'name'    => $self->{'name'},
+    'gender'  => $self->{'gender'},
+    'upp_s'   => upp_s($self->{'upp'}),
+  );
+  return %p;
+}
 
 =head1 AUTHOR
 
