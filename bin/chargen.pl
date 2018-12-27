@@ -12,4 +12,5 @@ use Person;
 
 my $fred = Person->new;
 $fred->show_s4;
+print "\n";
 
