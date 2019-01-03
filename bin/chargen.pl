@@ -13,3 +13,6 @@ use Person;
 my $person = Person->new;
 my %p = $person->person_hash;
 printf("%s [%s] %s\n", $p{'name'}, $p{'gender'}, $p{'upp_s'});
+
+$person->skills;
+

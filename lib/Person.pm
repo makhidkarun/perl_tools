@@ -50,8 +50,18 @@ sub new {
   my @upp           = gen_upp();
   $data{'upp'}      = \@upp;
   $data{'name'}     = gen_name(%data);
+  $data{'skills'}   = ();
   bless \%data, $self;
 }
+
+=head2 add_skill
+
+=cut
+
+sub add_skill {
+  my($self, $skill, $level) = @_;
+  $self->{'skills'}{$skill} += $level;
+ }
 
 
 =head2 gen_gender
@@ -79,6 +89,23 @@ sub gen_upp {
   return @upp;
 }
 
+=head2 show_skills
+
+=cut
+
+sub show_skills {
+  my $self = shift;
+  my $str;
+  foreach my $key (keys($self->{'skills'})) {
+    if ($str) {
+      $str .= ", ";
+    }
+    $str .= "$key-$self->{'skills'}{$key}";
+  }
+  return $str;
+}
+
+  
 =head2 upp_s
 
 =cut
