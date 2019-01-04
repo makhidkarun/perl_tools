@@ -26,7 +26,7 @@ ok( $tln_h{'name'} =~ /Lefron/, "Failed Last Name.");
 #$data{'_skills'}    = %skill_list;
 my $test_skills     = Person->new();
 $test_skills->add_skill('GunCbt', 1);
-#my $skill_string    = $test_skills->show_skills;
-#ok( ref($skill_string)) eq 'STRING', "$skill_string not a string" );
+my $skill_string    = $test_skills->show_skills;
+ok( ref($skill_string) eq 'STRING', "$skill_string not a string" );
  
 done_testing();

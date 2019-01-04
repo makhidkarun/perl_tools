@@ -96,11 +96,13 @@ sub gen_upp {
 sub show_skills {
   my $self = shift;
   my $str;
-  foreach my $key (keys($self->{'skills'})) {
+  my %skills  = %{$self->{'skills'}};
+  foreach my $key (keys(%skills)) {
     if ($str) {
       $str .= ", ";
     }
-    $str .= "$key-$self->{'skills'}{$key}";
+    my $value = %skills{$key};
+    $str .= "$key-$value";
   }
   return $str;
 }
