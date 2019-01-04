@@ -49,7 +49,8 @@ sub crew_show {
   my ($crew, $type, $num, $title) = @_;
   my $crew_number       = $type . '_' . $num;
   $crew->{$crew_number} = Person->new();
-  printf("\n %-15s", $title);
+  $crew->{$crew_number}->add_skill('Pilot', 1);
+  printf("\n%s\n", $title);
   $crew->{$crew_number}->show_s4();
 }
 
