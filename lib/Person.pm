@@ -124,10 +124,16 @@ sub upp_s {
 
 sub show_s4 {
   my $self = shift;
-  printf("%s [%s] %s", 
+  printf("%s [%s] %s \n", 
     $self->{'name'}, 
     $self->{'gender'}, 
-    upp_s($self->{'upp'}));
+    upp_s($self->{'upp'}),
+    );
+  if ($self->{'skills'}){
+    my $skill_string = $self->show_skills();
+    printf("%s \n", $skill_string);
+  }
+  
 };
 
 =head2 person_hash
