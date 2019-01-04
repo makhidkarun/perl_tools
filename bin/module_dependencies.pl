@@ -34,9 +34,17 @@ while (my $pwd = shift @dirs) {
     if ( -T $path ){
       open my $file, "$path"; 
       my @use_list;
+      my $module = "father_guido";
       while (defined ( my $line = <$file>)){
         if ( $line =~ /^package(.*);$/ ){
-          $module = $1;
+          $new_module = $1;
+          if ( $module eq "father_guido") {
+            $module = $new_module; 
+            @{$modules{$module}} = @use_list;
+          }
+          if (scalar(@use_list) ){
+            @use_list   = ();
+          }
         } elsif ( $line =~ /^use\s(.*)(\s|;)/ ){
           my $uses_line = $1;
           next if $uses_line =~ /strict|warnings|5\.[012]/;
@@ -44,9 +52,10 @@ while (my $pwd = shift @dirs) {
           $uses_line    =~ s/;//;
           my @uses_array  = split / /, $uses_line;
           my $uses        = $uses_array[0];
+          #push( @use_list, $uses );
           push( @use_list, $uses );
         }
-        @{$modules{$module}} = @use_list;
+          #@{$modules{$module}} = @use_list;
       }
       close($file);
     }
