@@ -101,7 +101,7 @@ sub show_skills {
     if ($str) {
       $str .= ", ";
     }
-    my $value = %skills{$key};
+    my $value = $skills{$key};
     $str .= "$key-$value";
   }
   return $str;
