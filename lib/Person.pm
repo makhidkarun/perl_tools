@@ -80,8 +80,8 @@ sub add_plot {
 =cut
 
 sub add_temperament {
-  my @temps = items_from_file('data/temperaments.txt', 2, 1);
-  return @temps[0];
+  my @temps = items_from_file('data/temperaments.txt', 1, 1);
+  return $temps[0];
 }
 
 =head2 add_appearence
@@ -91,11 +91,23 @@ sub add_temperament {
 sub add_appearence {
   my $hair    = get_hair();
   my $skin    = get_skin();
-  #my $height  = get_height();
-  #my $weight  = get_weight();
-  my $desc    = $hair;
-  $desc       .= ', ' . $skin;
+  my $height  = get_height();
+  my $weight  = get_weight();
+  my $desc    = ucfirst($height);
+  $desc       .= ', ' . $weight . ' build. ';
+  $desc       .= ucfirst($hair) . ', ';
+  $desc       .= $skin . '.';
   return $desc;
+}
+
+
+=head2 get_height
+
+=cut
+
+sub get_height {
+  my @height  = items_from_file('data/height.txt');  
+  return $height[0];
 }
 
 =head2 get_skin
@@ -106,6 +118,15 @@ sub get_skin {
   my @tone  = items_from_file('data/skin_tones.txt');  
   my $skin  = $tone[0] . ' skin';
   return $skin;
+}
+
+=head2 get_weight
+
+=cut
+
+sub get_weight {
+  my @weight  = items_from_file('data/weight.txt');  
+  return $weight[0];
 }
 
 =head2 get_hair
