@@ -54,7 +54,7 @@ sub crew_show {
   my $core_skill_level  = int(rand(2)) + 1;
   $crew->{$crew_number} = Person->new();
   $crew->{$crew_number}->add_skill($skill_list{$type}, $core_skill_level);
-  $crew->{$crew_number}->show_s4();
+  $crew->{$crew_number}->show();
 }
 
 =head2 function2

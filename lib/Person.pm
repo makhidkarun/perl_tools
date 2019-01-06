@@ -51,6 +51,8 @@ sub new {
   $data{'upp'}      = \@upp;
   $data{'name'}     = gen_name(%data);
   $data{'skills'}   = ();
+  $data{'plot'}     = add_plot();
+  $data{'temperament'} = add_temperament();
   bless \%data, $self;
 }
 
@@ -61,8 +63,25 @@ sub new {
 sub add_skill {
   my($self, $skill, $level) = @_;
   $self->{'skills'}{$skill} += $level;
- }
+}
 
+=head2 add_plot
+
+=cut
+
+sub add_plot {
+  my @plot = items_from_file('data/plots.txt', 1);
+  return $plot[0];
+}
+
+=head2 add_temperament
+
+=cut
+
+sub add_temperament {
+  my @temps = items_from_file('data/temperaments.txt', 2, 1);
+  return @temps[0];
+}
 
 =head2 gen_gender
 
@@ -76,7 +95,7 @@ sub gen_gender {
 =head2 gen_upp
 
 =cut
-
+ 
 sub gen_upp {
   my $roll;
   my $counter = 0;
@@ -87,6 +106,36 @@ sub gen_upp {
     $counter++;
   }
   return @upp;
+}
+
+=head2 items_from_file
+
+=cut
+
+sub items_from_file {
+  use Fcntl 'O_RDONLY';
+  use Tie::File;
+  
+  my ($file, 
+    $count, 
+    $unique) = @_; 
+  $count     ||= 1;
+  $unique    = 0 unless (defined($unique));
+  my @answer;
+  my @used;
+  my $selection;
+
+  tie(my @data, 'Tie::File', $file, mode => O_RDONLY) 
+    or die "Can't open $file:  $!\n";
+
+  for (my $i = 0; $i < $count; ) { 
+    $selection = $data[int(rand(scalar(@data)))];
+    next if $selection =~ /^#/;
+    next if ($unique and grep $_ eq $selection, @answer);
+    push(@answer, $selection);
+    $i++;
+  }
+  return @answer;
 }
 
 =head2 show_skills
@@ -118,6 +167,25 @@ sub upp_s {
   return $str;
 }
 
+=head2 show
+
+=cut
+
+sub show {
+  my $self = shift;
+  printf("%s [%s] %s \n", 
+    $self->{'name'}, 
+    $self->{'gender'}, 
+    upp_s($self->{'upp'}),
+    );
+  if ($self->{'skills'}){
+    my $skill_string = $self->show_skills();
+    printf("%s \n", $skill_string);
+  }
+  printf("Temperament: %s\n", $self->{'temperament'});
+  printf("Plot: %s \n", $self->{'plot'}); 
+};
+
 =head2 show_s4
 
 =cut
@@ -133,7 +201,6 @@ sub show_s4 {
     my $skill_string = $self->show_skills();
     printf("%s \n", $skill_string);
   }
-  
 };
 
 =head2 person_hash
