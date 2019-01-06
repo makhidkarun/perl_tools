@@ -74,7 +74,7 @@ if ( $min_gunners ) {
 
 my $min_stewards  = $ship->min_stewards();
 if ( $min_stewards ) {
-  print("\nStewards\n");
+  print("\nStewards\n========\n");
   for my $x (1..$min_stewards) {
     crew_show(\%crew, 'steward', $x);
   }

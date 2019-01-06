@@ -1,4 +1,4 @@
 #Ship name:hull size:jump:maneuver:cargo:max passengers:drive tonnage:weapons
-Miss Rosa:400:2:3:200:4:50:Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss
+Miss Rosa:200:2:3:200:0:50:Trip_Beam, Trip_Pulse
 BN-4594:400:1:6:20:0:40:Trip_Beam, Trip_Beam, Trip_Pulse, Trip_Miss
 Slaver's Folly:600:2:3:200:0:50:Trip_Beam, Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss, Doub_Miss_Sing_Sand
