@@ -42,17 +42,18 @@ if you don't export anything, such as for a purely object-oriented module.
 =cut
 
 sub new {
-  my $self          = shift;
-  my %data          = @_;
+  my $self              = shift;
+  my %data              = @_;
   unless ( $data{'gender'} ) {
-    $data{'gender'} = gen_gender();
+    $data{'gender'}     = gen_gender();
   }
-  my @upp           = gen_upp();
-  $data{'upp'}      = \@upp;
-  $data{'name'}     = gen_name(%data);
-  $data{'skills'}   = ();
-  $data{'plot'}     = add_plot();
-  $data{'temperament'} = add_temperament();
+  my @upp               = gen_upp();
+  $data{'upp'}          = \@upp;
+  $data{'name'}         = gen_name(%data);
+  $data{'skills'}       = ();
+  $data{'plot'}         = add_plot();
+  $data{'temperament'}  = add_temperament();
+  $data{'appearence'}   = add_appearence();
   bless \%data, $self;
 }
 
@@ -81,6 +82,44 @@ sub add_plot {
 sub add_temperament {
   my @temps = items_from_file('data/temperaments.txt', 2, 1);
   return @temps[0];
+}
+
+=head2 add_appearence
+
+=cut
+
+sub add_appearence {
+  my $hair    = get_hair();
+  my $skin    = get_skin();
+  #my $height  = get_height();
+  #my $weight  = get_weight();
+  my $desc    = $hair;
+  $desc       .= ', ' . $skin;
+  return $desc;
+}
+
+=head2 get_skin
+
+=cut
+
+sub get_skin {
+  my @tone  = items_from_file('data/skin_tones.txt');  
+  my $skin  = $tone[0] . ' skin';
+  return $skin;
+}
+
+=head2 get_hair
+
+=cut
+
+sub get_hair {
+  my @length  = items_from_file('data/hair_length.txt');  
+  my @body    = items_from_file('data/hair_body.txt');  
+  my @color   = items_from_file('data/hair_colors.txt');  
+  my $hair    = ucfirst($length[0]) . ' ';
+  $hair       .= $body[0] . ' ';
+  $hair       .= $color[0] . ' hair';
+  return $hair;
 }
 
 =head2 gen_gender
@@ -130,6 +169,7 @@ sub items_from_file {
 
   for (my $i = 0; $i < $count; ) { 
     $selection = $data[int(rand(scalar(@data)))];
+    next unless $selection;
     next if $selection =~ /^#/;
     next if ($unique and grep $_ eq $selection, @answer);
     push(@answer, $selection);
@@ -178,6 +218,7 @@ sub show {
     $self->{'gender'}, 
     upp_s($self->{'upp'}),
     );
+  printf("Appearence: %s \n", $self->{'appearence'}); 
   if ($self->{'skills'}){
     my $skill_string = $self->show_skills();
     printf("%s \n", $skill_string);

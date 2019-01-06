@@ -51,9 +51,8 @@ sub crew_show {
   my %skill_list        = ( pilot => "Pilot", navigator => "Navigation", 
     eng => "Enginnering", gunner => "Gunnery", medic => "Medical", 
     steward => "Steward");
-  my $core_skill_level  = int(rand(2)) + 1;
   $crew->{$crew_number} = Person->new();
-  $crew->{$crew_number}->add_skill($skill_list{$type}, $core_skill_level);
+  $crew->{$crew_number}->add_skill($skill_list{$type}, 1);
   $crew->{$crew_number}->show();
 }
 
