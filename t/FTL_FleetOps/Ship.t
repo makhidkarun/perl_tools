@@ -20,7 +20,7 @@ my %ship_data = ( _name => 'Miss Rosa',
   _max_cargo => 200,
   _max_pass  => 4,
   _drive_ton => 50,
-  _weapons   => 'Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss',
+  _weapons   => 'Trip_Beam, Trip_Pulse',
 );
 
 my $ship                = FTL_FleetOps::Ship->new(\%ship_data);
@@ -32,8 +32,8 @@ ok($ship->maneuver      == 3, "Ship maneuver should be 3.");
 ok($ship->max_cargo     == 200, "Ship max_cargo should be 200.");
 ok($ship->max_pass      == 4, "Ship max_pass should be 4.");
 ok($ship->drive_ton     == 50, "Ship drive_ton should be 50.");
-ok($ship->weapons       eq 'Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss', 
-  "Ship weapons should be 'Trip_Beam, Trip_Pulse, Trip_Pulse, Trip_Miss'.");
+ok($ship->weapons       eq 'Trip_Beam, Trip_Pulse', 
+  "Ship weapons should be 'Trip_Beam, Trip_Pulse'.");
 
 done_testing();
 
