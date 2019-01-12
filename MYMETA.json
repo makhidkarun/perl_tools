@@ -41,10 +41,6 @@
       "Person" : {
          "file" : "lib/Person.pm",
          "version" : "0.01"
-      },
-      "Ship" : {
-         "file" : "lib/Ship.pm",
-         "version" : "0.01"
       }
    },
    "release_status" : "stable",
