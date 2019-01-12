@@ -1,12 +1,24 @@
-package Ship;
+package FTL_FleetOps::Ship;
 
 use 5.008;
 use strict;
 use warnings;
-#use Exporter;
-#our @ISA = 'Exporter';
-#our @EXPORT_OK = qw( required_engineers );
 
+use Moose;
+use namespace::autoclean;
+
+has '_name'       => ( is => 'rw');
+has '_hull_size'  => ( is => 'rw');
+has '_jump'       => ( is => 'rw');
+has '_maneuver'   => ( is => 'rw');
+has '_max_cargo'  => ( is => 'rw');
+has '_max_pass'   => ( is => 'rw');
+has '_drive_ton'  => ( is => 'rw');
+has '_weapons'    => ( is => 'rw');
+  
+no Moose;
+
+__PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
@@ -18,7 +30,7 @@ Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -27,15 +39,10 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use Ship;
+    use FTL_FleetOps::Ship;
 
     my $foo = Ship->new();
     ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
@@ -95,25 +102,6 @@ sub need_medic {
 
 =cut
 
-  
-=head2 new
-
-=cut
-
-sub new {
-  my $class     =  shift;
-  my @data      =  @{$_[0]};
-  bless{
-    _name       => $data[0],
-    _hull_size  => $data[1],
-    _jump       => $data[2],
-    _maneuver   => $data[3],
-    _max_cargo  => $data[4],
-    _max_pass   => $data[5],
-    _drive_ton  => $data[6],
-    _weapons    => $data[7],
-  }, $class;
-}
 
 =head2 name
 

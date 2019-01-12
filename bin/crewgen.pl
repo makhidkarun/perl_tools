@@ -12,12 +12,12 @@ use lib 'lib';
 use Getopt::Long;
 
 use Crew qw( crew_show );
-use Ship;
+use FTL_FleetOps::Ship;
 use Person;
 
 my $config;
 my $name;
-my @ship_data;
+my %ship_data;
 
 GetOptions(
   "config=s"    => \$config,
@@ -29,11 +29,19 @@ while (<$CONFIG>) {
   next if ( $_ =~ m/\#/);
   chomp;
   if ( $_ =~ /$name/ ) {
-    @ship_data = split /:/, $_;
+    my @ship_data = split /:/, $_;
+    $ship_data{_name}      = $ship_data[0];
+    $ship_data{_hull_size} = $ship_data[1];
+    $ship_data{_jump}      = $ship_data[2];
+    $ship_data{_maneuver}  = $ship_data[3];
+    $ship_data{_max_cargo} = $ship_data[4];
+    $ship_data{_max_pass}  = $ship_data[5];
+    $ship_data{_drive_ton} = $ship_data[6];
+    $ship_data{_weapons}   = $ship_data[7];
   }
 }
 
-my $ship          = Ship->new(\@ship_data);
+my $ship          = FTL_FleetOps::Ship->new(\%ship_data);
 my $s_name        = $ship->name();
 my $s_hull_size   = $ship->hull_size();
 my $s_max_cargo   = $ship->max_cargo();
@@ -45,7 +53,7 @@ print '=' x length($s_name) . "\n";
 
 print("\nFlight Crew\n===========\n");
 crew_show(\%crew, 'pilot', 1);
-
+print "\n";
 crew_show(\%crew, 'navigator', 1);
 
 print("\nEngineering\n============\n");

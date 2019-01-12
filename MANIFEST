@@ -11,7 +11,7 @@ lib/Crew.pm
 lib/Dice.pm
 lib/Names.pm
 lib/Person.pm
-lib/Ship.pm
+lib/FTL_FleetOps/Ship.pm
 LICENSE
 MANIFEST			This list of files
 README
@@ -23,8 +23,5 @@ t/Names.t
 t/Person.t
 t/pod-coverage.t
 t/pod.t
-t/Ship.t
-tmp/fred
-toys/Person.pm
-toys/skills.pl
+t/FTL_FleetOps/Ship.t
 xt/boilerplate.t

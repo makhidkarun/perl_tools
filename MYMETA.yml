@@ -1,5 +1,5 @@
 ---
-abstract: 'Random roller for 2d6 based Role-Playing Games.'
+abstract: 'Tools to run a space fleet operation.'
 author:
   - 'Leam Hall <leamhall@gmail.com>'
 build_requires:
@@ -12,7 +12,7 @@ license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
-name: Dice
+name: FTL_FleetOps
 provides:
   Crew:
     file: lib/Crew.pm
@@ -20,6 +20,9 @@ provides:
   Dice:
     file: lib/Dice.pm
     version: '0.01'
+  FTL_FleetOps::Ship:
+    file: lib/FTL_FleetOps/Ship.pm
+    version: '0.02'
   Names:
     file: lib/Names.pm
     version: '0.01'

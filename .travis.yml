@@ -10,6 +10,7 @@ before_install:
   - cpanm Exporter
   - cpanm lib
   - cpanm DBD::SQLite
+  - cpanm Test::Kwalitee
 
 install:
   cpanm --quiet --installdeps --notest .

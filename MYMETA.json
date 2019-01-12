@@ -1,5 +1,5 @@
 {
-   "abstract" : "Random roller for 2d6 based Role-Playing Games.",
+   "abstract" : "Tools to run a space fleet operation.",
    "author" : [
       "Leam Hall <leamhall@gmail.com>"
    ],
@@ -12,7 +12,7 @@
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : 2
    },
-   "name" : "Dice",
+   "name" : "FTL_FleetOps",
    "prereqs" : {
       "build" : {
          "requires" : {
@@ -33,6 +33,10 @@
       "Dice" : {
          "file" : "lib/Dice.pm",
          "version" : "0.01"
+      },
+      "FTL_FleetOps::Ship" : {
+         "file" : "lib/FTL_FleetOps/Ship.pm",
+         "version" : "0.02"
       },
       "Names" : {
          "file" : "lib/Names.pm",
