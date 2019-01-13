@@ -13,14 +13,15 @@ BEGIN {
 
 diag( "Testing Ship $FTL_FleetOps::Ship::VERSION, Perl $], $^X" );
 
-my %ship_data = ( _name => 'Miss Rosa',
-  _hull_size => 400,
-  _jump      => 2,
-  _maneuver  => 3,
-  _max_cargo => 200,
-  _max_pass  => 4,
-  _drive_ton => 50,
-  _weapons   => 'Trip_Beam, Trip_Pulse',
+my %ship_data = ( 
+  name => 'Miss Rosa',
+  hull_size => 400,
+  jump      => 2,
+  maneuver  => 3,
+  max_cargo => 200,
+  max_pass  => 4,
+  drive_ton => 50,
+  weapons   => 'Trip_Beam, Trip_Pulse',
 );
 
 my $ship                = FTL_FleetOps::Ship->new(\%ship_data);
@@ -34,6 +35,9 @@ ok($ship->max_pass      == 4, "Ship max_pass should be 4.");
 ok($ship->drive_ton     == 50, "Ship drive_ton should be 50.");
 ok($ship->weapons       eq 'Trip_Beam, Trip_Pulse', 
   "Ship weapons should be 'Trip_Beam, Trip_Pulse'.");
+
+ok($ship->min_gunners   == 2, "Should have one gunner per weapon.");
+ok($ship->min_medic     == 1, "Should have one medic if hull greater than 200 dT.");
 
 done_testing();
 

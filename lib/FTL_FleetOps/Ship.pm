@@ -7,14 +7,14 @@ use warnings;
 use Moose;
 use namespace::autoclean;
 
-has '_name'       => ( is => 'rw');
-has '_hull_size'  => ( is => 'rw');
-has '_jump'       => ( is => 'rw');
-has '_maneuver'   => ( is => 'rw');
-has '_max_cargo'  => ( is => 'rw');
-has '_max_pass'   => ( is => 'rw');
-has '_drive_ton'  => ( is => 'rw');
-has '_weapons'    => ( is => 'rw');
+has 'name'       => ( is => 'rw');
+has 'hull_size'  => ( is => 'rw');
+has 'jump'       => ( is => 'rw');
+has 'maneuver'   => ( is => 'rw');
+has 'max_cargo'  => ( is => 'rw');
+has 'max_pass'   => ( is => 'rw');
+has 'drive_ton'  => ( is => 'rw');
+has 'weapons'    => ( is => 'rw');
   
 no Moose;
 
@@ -88,70 +88,15 @@ sub min_gunners {
   return $lwc;
 }
 
-=head2 need_medic
+=head2 min_medic
 
 =cut
 
-sub need_medic {
+sub min_medic {
   my $self          = shift;
   my $medic = $self->hull_size >= 200 ? 1 : 0;
   return $medic;
 }
-
-=head2 need_gunners
-
-=cut
-
-
-=head2 name
-
-=cut
-
-sub name      { my $self = shift; return $self->{_name}}
-
-=head2 hull_size
-
-=cut
-
-sub hull_size { my $self = shift; return $self->{_hull_size} }
-
-=head2 jump
-
-=cut
-
-sub jump      { my $self = shift; return $self->{_jump} }
-
-=head2 maneuver
-
-=cut
-
-sub maneuver  { my $self = shift; return $self->{_maneuver}}
-
-=head2 max_cargo
-
-=cut
-
-sub max_cargo { my $self = shift; return $self->{_max_cargo}}
-
-=head2 max_pass
-
-=cut
-
-sub max_pass  { my $self = shift; return $self->{_max_pass}}
-
-=head2 drive_ton
-
-=cut
-
-sub drive_ton { my $self = shift; return $self->{_drive_ton}}
-
-=head2 weapons
-
-=cut
-
-sub weapons   { my $self = shift; return $self->{_weapons}}
-
-
 
 =head1 AUTHOR
 

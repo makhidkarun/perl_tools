@@ -30,22 +30,22 @@ while (<$CONFIG>) {
   chomp;
   if ( $_ =~ /$name/ ) {
     my @ship_data = split /:/, $_;
-    $ship_data{_name}      = $ship_data[0];
-    $ship_data{_hull_size} = $ship_data[1];
-    $ship_data{_jump}      = $ship_data[2];
-    $ship_data{_maneuver}  = $ship_data[3];
-    $ship_data{_max_cargo} = $ship_data[4];
-    $ship_data{_max_pass}  = $ship_data[5];
-    $ship_data{_drive_ton} = $ship_data[6];
-    $ship_data{_weapons}   = $ship_data[7];
+    $ship_data{name}      = $ship_data[0];
+    $ship_data{hull_size} = $ship_data[1];
+    $ship_data{jump}      = $ship_data[2];
+    $ship_data{maneuver}  = $ship_data[3];
+    $ship_data{max_cargo} = $ship_data[4];
+    $ship_data{max_pass}  = $ship_data[5];
+    $ship_data{drive_ton} = $ship_data[6];
+    $ship_data{weapons}   = $ship_data[7];
   }
 }
 
 my $ship          = FTL_FleetOps::Ship->new(\%ship_data);
-my $s_name        = $ship->name();
-my $s_hull_size   = $ship->hull_size();
-my $s_max_cargo   = $ship->max_cargo();
-my $s_weapons     = $ship->weapons();
+my $s_name        = $ship->name;
+my $s_hull_size   = $ship->hull_size;
+my $s_max_cargo   = $ship->max_cargo;
+my $s_weapons     = $ship->weapons;
 
 my %crew;
 print "$s_name\n";
@@ -64,7 +64,7 @@ for my $x (1..$min_engineers) {
 }
 
 
-if ( $ship->need_medic() ) {
+if ( $ship->min_medic() ) {
   print("\nMedical\n=======\n");
   crew_show(\%crew, 'medic', 1);
   print "\n";
