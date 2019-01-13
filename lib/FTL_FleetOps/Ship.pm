@@ -7,14 +7,14 @@ use warnings;
 use Moose;
 use namespace::autoclean;
 
-has 'name'       => ( is => 'rw');
-has 'hull_size'  => ( is => 'rw');
-has 'jump'       => ( is => 'rw');
-has 'maneuver'   => ( is => 'rw');
-has 'max_cargo'  => ( is => 'rw');
-has 'max_pass'   => ( is => 'rw');
-has 'drive_ton'  => ( is => 'rw');
-has 'weapons'    => ( is => 'rw');
+has 'name'       => ( is => 'rw', default => '');
+has 'hull_size'  => ( is => 'rw', isa => "Int", default => 100);
+has 'jump'       => ( is => 'rw', isa => "Int", default => 1);
+has 'maneuver'   => ( is => 'rw', isa => "Int", default => 1);
+has 'max_cargo'  => ( is => 'rw', isa => "Int", default => 0);
+has 'max_pass'   => ( is => 'rw', isa => "Int", default => 0);
+has 'drive_ton'  => ( is => 'rw', isa => "Int", default => 20);
+has 'weapons'    => ( is => 'rw', default => '');
   
 no Moose;
 
@@ -53,7 +53,7 @@ Perhaps a little code snippet.
 sub min_engineers {
   my $self          = shift;
   my $engineers     = 0;
-  my $drive_tonnage = $self->drive_ton();
+  my $drive_tonnage = $self->drive_ton;
   for (; $drive_tonnage > 0; $drive_tonnage -= 35){
     $engineers++;  
   }
