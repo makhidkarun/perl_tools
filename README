@@ -1,16 +1,112 @@
 .
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+INTRO
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+The perl_tools repository is a collection of Perl based tools to help
+players and Game Masters (GMs, alternately DMs) generate Non-Player
+Characters. 
 
+For example, use "chargen.pl" to generate a single character:
+
+```
+  bin/chargen.pl
+  Ilda Bouchet [F] 785576 
+```
+
+The "roll_dice.pl" code takes an optional "--roll <INT>" and provides 2d6 rols.
+
+```
+  bin/roll_dice.pl --rolls 4
+  8 7 4 12
+```
+
+The "crewgen.pl" program uses a CSV data file and creates a crew for 
+whatever ship matches the "name". 
+
+```
+  bin/crewgen.pl --config data/ships.csv --name 'Miss Rosa'
+  Miss Rosa
+  =========
+
+  Flight Crew
+  ===========
+  German Joubert [M] A8C599 
+  Appearence: Tall, average build. Short curly auburn hair, translucent skin. 
+  Pilot-1 
+  Temperament: Architect
+  Plot: The enigma 
+
+  Woodrow Marcel [M] A6B773 
+  Appearence: Average height, very heavy set build. Very long straight white hair, tanned skin. 
+  Navigation-1 
+  Temperament: Inventor
+  Plot: Slaying of kin unrecognized 
+
+  Engineering
+  ============
+  Cinda Ayers [F] 987985 
+  Appearence: Tall, heavy set build. Neck length straight chestnut hair, pale skin. 
+  Enginnering-1 
+  Temperament: Composer
+  Plot: Revolt 
+
+  Dominic Carter [M] 8958A3 
+  Appearence: Tall, average build. Short curly brown hair, brown skin. 
+  Enginnering-1 
+  Temperament: Champion
+  Plot: Discovery of the dishonour of a loved one 
+
+
+  Medical
+  =======
+  Fidel Sanchez [M] 6947B7 
+  Appearence: Average height, skinny build. Waist length curly chestnut hair, chocolate skin. 
+  Medical-1 
+  Temperament: Inspector
+  Plot: Revolt 
+
+
+  Gunnery
+  =======
+  Rachelle Maes [F] 3AB467 
+  Appearence: Average height, heavy set build. Neck length frizzed brown hair, green skin. 
+  Gunnery-1 
+  Temperament: Protector
+  Plot: Madness 
+
+  Nelson Merlin [M] 764A34 
+  Appearence: Average height, skinny build. Neck length straight auburn hair, gold skin. 
+  Gunnery-1 
+  Temperament: Teacher
+  Plot: Tragedy 
+```
+
+CODE REQUIREMENTS
+
+The following Perl modules and other code are required:
+
+  Perl
+  ====
+  DBI
+  File::Basename
+  File::Spec
+  Getopt::Long
+  Module::Build
+  Moose
+  namespace::autoclean 
+  Test::Kwalitee
+  Test::More
+
+  Non Perl
+  ========
+  SQLite 3
+
+
+BUILD STATUS
+
+Builds are tracked on Travis-CI:
+
+  https://travis-ci.org/makhidkarun/perl_tools
 
 INSTALLATION
 
@@ -26,7 +122,7 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc Dice
+    perldoc perl_tools
 
 You can also look for information at:
 
