@@ -1,11 +1,11 @@
-package Dice;
+
+
+package FTL_FleetOps::Dice;
 
 use 5.008;
 use strict;
 use warnings;
-use Exporter;
-our @ISA = 'Exporter';
-our @EXPORT_OK = qw( roll_dice roll_1 roll_2);
+use Moose;
 
 =head1 NAME
 
@@ -13,28 +13,24 @@ Dice - Random roller for 2d6 based Role-Playing Games.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
 
 Provides dice rolls for other code. 
 
-  C<use Dice qw( roll_dice roll_1 roll_2);
+  C<use FTL_FleetOps::Dice;
   # Shortcut standard roll: 
-  my $roll = roll_2;
+  my $dice  = FTL_FleetOps::Dice->new();
+  my $roll  = $dice->roll_2();
   # If using more than 2 dice, and have a per-total modifier.
-  my $other_roll = roll_dice(5,+3);>
-
-=head1 EXPORT
-
-  roll_dice
-  roll_1
-  roll_2
+  my $other_roll = $dice->roll_dice(5,+3);
+  >
 
 =head1 SUBROUTINES/METHODS
 
@@ -43,9 +39,9 @@ Provides dice rolls for other code.
 =cut
 
 sub roll_dice {
-  my ($number, $modifier) = @_;
-  $modifier ||= 0;
-  my $total;
+  my ( $self, $number, $modifier)  = @_;
+  my $total = 0;
+  $modifier = 0 unless ( defined($modifier));
   for (1..$number) { 
     $total += int(rand(6)) + 1;
   }
@@ -57,7 +53,8 @@ sub roll_dice {
 =cut
 
 sub roll_1 {
-  return roll_dice(1,0);
+  my $self = shift;
+  return $self->roll_dice(1,0);
 }
 
 =head2 roll_2
@@ -65,9 +62,9 @@ sub roll_1 {
 =cut
 
 sub roll_2 {
-  return roll_dice(2,0);
+  my $self = shift;
+  return $self->roll_dice(2,0);
 }
-
 
 
 =head1 AUTHOR
@@ -79,7 +76,6 @@ Leam Hall, C<< <leamhall at gmail.com> >>
 Please report any bugs or feature requests to C<bug-. at rt.cpan.org>, or through
 the web interface at L<https://rt.cpan.org/NoAuth/ReportBug.html?Queue=.>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
-
 
 
 

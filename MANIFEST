@@ -8,16 +8,16 @@ Changes
 data/names.db
 data/ships.csv
 lib/Crew.pm
-lib/Dice.pm
+lib/FTL_FleetOps/Dice.pm
 lib/Names.pm
 lib/Person.pm
 lib/FTL_FleetOps/Ship.pm
 LICENSE
 MANIFEST			This list of files
-README
+README.md
 t/00-load.t
 t/Crew.t
-t/Dice.t
+t/FTL_FleetOps/Dice.t
 t/manifest.t
 t/Names.t
 t/Person.t
