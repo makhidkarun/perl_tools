@@ -1,10 +1,10 @@
-package Person;
+package FTL_FleetOps::Person;
 
 use 5.008;
 use strict;
 use warnings;
 use lib 'lib';
-use Names qw(gen_name);
+use FTL_FleetOps::Names qw(gen_name);
 
 =head1 NAME
 

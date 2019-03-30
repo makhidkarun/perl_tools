@@ -1,4 +1,4 @@
-package Names;
+package FTL_FleetOps::Names;
 
 use 5.008;
 use strict;

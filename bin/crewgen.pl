@@ -11,9 +11,9 @@ use warnings;
 use lib 'lib';
 use Getopt::Long;
 
-use Crew qw( crew_show );
+use FTL_FleetOps::Crew qw( crew_show );
 use FTL_FleetOps::Ship;
-use Person;
+use FTL_FleetOps::Person;
 
 my $config;
 my $name;

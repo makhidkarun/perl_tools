@@ -6,13 +6,13 @@ use 5.008_004;
 
 use Test::More;
 use lib 'lib';
-use Names qw (gen_name );
+use FTL_FleetOps::Names qw (gen_name );
 
 BEGIN {
-    use_ok( 'Names' ) || BAIL_OUT();
+    use_ok( 'FTL_FleetOps::Names' ) || BAIL_OUT();
 }
 
-diag( "Testing Names $Names::VERSION, Perl $], $^X" );
+diag( "Testing Names $FTL_FleetOps::Names::VERSION, Perl $], $^X" );
 
 my %data;
 $data{'gender'} = int(rand(2)) ? "F" : "M";
