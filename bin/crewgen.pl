@@ -28,28 +28,24 @@ open my $CONFIG, '<', "$config" or die $!;
 while (<$CONFIG>) {
   next if ( $_ =~ m/\#/);
   chomp;
-  if ( $_ =~ /$name/ ) {
-    my @ship_data = split /:/, $_;
-    $ship_data{name}      = $ship_data[0];
-    $ship_data{hull_size} = $ship_data[1];
-    $ship_data{jump}      = $ship_data[2];
-    $ship_data{maneuver}  = $ship_data[3];
-    $ship_data{max_cargo} = $ship_data[4];
-    $ship_data{max_pass}  = $ship_data[5];
-    $ship_data{drive_ton} = $ship_data[6];
-    $ship_data{weapons}   = $ship_data[7];
+  if ( !defined($name) || $_ =~ /$name/ ) {
+    my @line = split /:/, $_;
+    $ship_data{name}      = $line[0];
+    $ship_data{hull_size} = $line[1];
+    $ship_data{jump}      = $line[2];
+    $ship_data{maneuver}  = $line[3];
+    $ship_data{max_cargo} = $line[4];
+    $ship_data{max_pass}  = $line[5];
+    $ship_data{drive_ton} = $line[6];
+    $ship_data{weapons}   = $line[7];
   }
 }
 
 my $ship          = FTL_FleetOps::Ship->new(\%ship_data);
-my $s_name        = $ship->name;
-my $s_hull_size   = $ship->hull_size;
-my $s_max_cargo   = $ship->max_cargo;
-my $s_weapons     = $ship->weapons;
-
 my %crew;
-print "$s_name\n";
-print '=' x length($s_name) . "\n";
+
+print $ship->name, "\n";
+print '=' x length($ship->name) . "\n";
 
 print("\nFlight Crew\n===========\n");
 crew_show(\%crew, 'pilot', 1);
